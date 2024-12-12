@@ -13,10 +13,24 @@ document.addEventListener("DOMContentLoaded", function () {
         banner.style.backgroundImage = `url(${images[currentImageIndex]})`;
     }
 
+    // Initial background image load
+    changeBackgroundImage();
+
     setInterval(function () {
         currentImageIndex = (currentImageIndex + 1) % images.length;
         changeBackgroundImage();
     }, 5000);
+
+    // Change image with arrow button clicks
+    document.getElementById('prev').addEventListener('click', function() {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        changeBackgroundImage();
+    });
+
+    document.getElementById('next').addEventListener('click', function() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        changeBackgroundImage();
+    });
 
     async function getWeather() {
         // Fetch weather data from OpenWeatherMap
